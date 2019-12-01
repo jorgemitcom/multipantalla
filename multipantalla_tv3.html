@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>MULTIPANTALLA</title>
+		<script src="https://cdn.rawgit.com/video-dev/hls.js/18bb552/dist/hls.min.js"></script>
+		<script src="https://unpkg.com/plyr@3.5.6/dist/plyr.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://cdn.plyr.io/3.5.6/plyr.css" />
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	
+	
+
+	<body>
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+
+				//constant amb els streamings/videos
+				const source = ['https://directes-tv-es.ccma.cat/es/ngrp:tv3_web/playlist.m3u8?DVR', 'https://directes-tv-es.ccma.cat/es/ngrp:c33_web/playlist.m3u8?DVR', 'https://directes-tv-int.ccma.cat/int/ngrp:324_web/playlist.m3u8?DVR', 'https://directes-tv-es.ccma.cat/es/ngrp:es3_web/playlist.m3u8?DVR', 'https://directes-tv-es.ccma.cat/es/ngrp:tvc_web/playlist.m3u8?DVR', 'https://directes-tv-int.ccma.cat/int/ngrp:bnd_web/playlist.m3u8?DVR', 'https://directes-tv-es.ccma.cat/es/ngrp:oca1_web/playlist.m3u8?DVR', 'https://directes-tv-es.ccma.cat/es/ngrp:oca2_web/playlist.m3u8?DVR', 'http://', 'http://', 'http://', 'http://'];
+				//constants dels players
+				const video = document.querySelectorAll('video');
+				
+				//definició de bucle for per inicialitzar els players
+				for (var i = 0; i < video.length; i++) {
+					//inicialització del player
+					const player = new Plyr(video[i], {captions: {active: true, update: true, language: 'en'}});
+					
+					//condició if si l'enllaç triat conté "m3u8"
+					if(source[i].indexOf('.m3u8') != -1){
+						//definició de condició if en cas de navegador amb suport nadiu
+						if (!Hls.isSupported()) {
+							video[i].src = source[i];
+
+						} else {
+							//utilització de hls.js per reproducció del streaming
+							const hls = new Hls();
+							hls.loadSource(source[i]);
+							hls.attachMedia(video[i]);
+							window.hls = hls;
+
+							player.on('languagechange', () => {
+								setTimeout(() => hls.subtitleTrack = player.currentTrack, 50);
+							});
+						}
+					} else {
+						//cas enllaç no m3u8
+						video[i].src = source[i];
+					}
+
+					window.player = player;
+				}				
+			
+			});
+	</script>
+
+		<div class="container">
+			
+			<div class="row justify-content-center">
+				<div class="col w-100 p-0 players">
+					<video muted autoplay id="player_un" controls crossorigin playsinline poster="img/no_disponible.png"></video>
+					<div class="titol">TV3 (ES)</div>
+				</div>
+				<div class="col w-100 p-0 players">
+					<video muted autoplay id="player_dos" controls crossorigin playsinline poster="img/no_disponible.png"></video>
+					<div class="titol">Super3/33 (ES)</div>
+				</div>
+				<div class="col w-100 p-0 players">
+					<video muted autoplay id="player_tres" controls crossorigin playsinline poster="img/no_disponible.png"></video>
+					<div class="titol">324 (INT)</div>
+				</div>
+				
+				<div class="col w-100 p-0 players">
+					<video muted autoplay id="player_quatre" controls crossorigin playsinline poster="img/no_disponible.png"></video>
+					<div class="titol">Esport3 (ES)</div>
+				</div>
+  			</div>
+			
+			<div class="row justify-content-center">
+				<div class="col w-100 p-0 players">
+					<video muted autoplay id="player_cinc" controls crossorigin playsinline poster="img/no_disponible.png"></video>
+					<div class="titol">TV3CAT (ES)</div>
+				</div>
+				<div class="col w-100 p-0 players">
+					<video muted autoplay id="player_sis" controls crossorigin playsinline poster="img/no_disponible.png"></video>
+					<div class="titol">BONDIA TV (ES)</div>
+				</div>
+				<div class="col w-100 p-0 players">
+					<video muted autoplay id="player_set" controls crossorigin playsinline poster="img/no_disponible.png"></video>
+					<div class="titol">DIRECTE EXCLUSIU 1 (ES)</div>
+				</div>
+				<div class="col w-100 p-0 players">
+					<video muted autoplay id="player_huit" controls crossorigin playsinline poster="img/no_disponible.png"></video>
+					<div class="titol">DIRECTE EXCLUSIU 2 (ES)</div>
+				</div>
+  			</div>
+			
+			
+			<div class="row justify-content-center">
+				<div class="col w-100 p-0 players">
+					<video muted autoplay id="player_nou" controls crossorigin playsinline poster="img/no_disponible.png"></video>
+					<div id="nou" class="titol">NULL</div>
+				</div>
+				<div class="col w-100 p-0 players">
+					<video muted autoplay id="player_deu" controls crossorigin playsinline poster="img/no_disponible.png"></video>
+					<div class="titol">NULL</div>
+				</div>
+				<div class="col w-100 p-0 players">
+					<video muted autoplay id="player_onze" controls crossorigin playsinline poster="img/no_disponible.png"></video>
+					<div class="titol">NULL</div>
+				</div>
+				<div class="col w-100 p-0 players">
+					<video muted autoplay id="player_dotze" controls crossorigin playsinline poster="img/no_disponible.png"></video>
+					<div class="titol">NULL</div>
+				</div>
+  			</div>
+		</div>
+
+	</body>
+</html>
