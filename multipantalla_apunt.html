@@ -30,6 +30,7 @@
 					//inicialització del player
 					const player = new Plyr(video[i], {captions: {active: true, update: true, language: 'en'}});
 					
+					
 					//condició if si l'enllaç triat conté "m3u8"
 					if(source[i].indexOf('.m3u8') != -1){
 						//definició de condició if en cas de navegador amb suport nadiu
@@ -47,6 +48,12 @@
 								setTimeout(() => hls.subtitleTrack = player.currentTrack, 50);
 							});
 						}
+					} else if(source[i].indexOf('.mpd') != -1) {
+						dash = dashjs.MediaPlayer().create();
+						
+						//dash.getBitrateInfoListFor
+
+						dash.initialize(video[i], source[i], false);
 					} else {
 						//cas enllaç no m3u8
 						video[i].src = source[i];

@@ -11,6 +11,8 @@
 		<link rel="stylesheet" href="https://cdn.plyr.io/3.5.6/plyr.css" />
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 		<link rel="stylesheet" href="css/style.css">
+		 <!-- MPD support -->
+		<script src="https://cdn.dashjs.org/latest/dash.all.debug.js"></script>
 	</head>
 	
 	
@@ -21,7 +23,7 @@
 			document.addEventListener('DOMContentLoaded', () => {
 
 				//constant amb els streamings/videos
-				const source = ['https://hlsliveamdgl7-lh.akamaihd.net/i/hlsdvrlive_1@583042/master.m3u8', 'https://hlsliveamdgl1-lh.akamaihd.net/i/hlsdvrlive_1@60414/master.m3u8', 'http://hlsliveamdgl8-lh.akamaihd.net/i/hlsdvrlive_1@583030/master.m3u8', 'https://hlsliveamdgl1-lh.akamaihd.net/i/hlsdvrlive_1@39732/master.m3u8', 'https://hlsliveamdgl1-lh.akamaihd.net/i/hlslive_1@584095/master.m3u8', 'https://rtvev4-live-hss.secure.footprint.net/egress/ahandler/rtvegl1/la2ca_lv3_aosv4_gl1/la2ca_lv3_aosv4_gl1.isml/la2ca_lv3_aosv4_gl1.m3u8?hls_no_audio_only', 'https://rtvev4-live-hss.secure.footprint.net/egress/ahandler/rtvegl8/24hca_lv3_aosv4_gl8/24hca_lv3_aosv4_gl8.isml/24hca_lv3_aosv4_gl8.m3u8?hls_no_audio_only', 'https://rtvev4-live-hss.secure.footprint.net/egress/ahandler/rtvegl0/ins1_lv3_aosv4_gl0/ins1_lv3_aosv4_gl0.isml/ins1_lv3_aosv4_gl0.m3u8?hls_no_audio_only', 'https://rtvev4-live-hss.secure.footprint.net/egress/ahandler/rtvegl0/ins2_lv3_aosv4_gl0/ins2_lv3_aosv4_gl0.isml/ins2_lv3_aosv4_gl0.m3u8?hls_no_audio_only', 'https://rtvev4-live-hss.secure.footprint.net/egress/ahandler/rtvegl0/ins3_lv3_aosv4_gl0/ins3_lv3_aosv4_gl0.isml/ins3_lv3_aosv4_gl0.m3u8?hls_no_audio_only', 'https://rtvev4-live-hss.secure.footprint.net/egress/ahandler/rtvegl0/ins4_lv3_aosv4_gl0/ins4_lv3_aosv4_gl0.isml/ins4_lv3_aosv4_gl0.m3u8?hls_no_audio_only', 'http://'];
+				const source = ['https://hlsliveamdgl7-lh.akamaihd.net/i/hlsdvrlive_1@583042/master.m3u8', 'https://hlsliveamdgl1-lh.akamaihd.net/i/hlsdvrlive_1@60414/master.m3u8', 'http://hlsliveamdgl8-lh.akamaihd.net/i/hlsdvrlive_1@583030/master.m3u8', 'https://hlsliveamdgl1-lh.akamaihd.net/i/hlsdvrlive_1@39732/master.m3u8', 'https://hlsliveamdgl7-lh.akamaihd.net/i/hlslive_1@117262/master.m3u8', 'https://hlsliveamdgl0-lh.akamaihd.net/i/hlslive_1@113085/master.m3u8', 'https://hlsliveamdgl8-lh.akamaihd.net/i/hlslive_1@156275/master.m3u8', 'https://hlsliveamdgl7-lh.akamaihd.net/i/hlslive_1@134665/master.m3u8', 'https://hlsliveamdgl0-lh.akamaihd.net/i/hlslive_1@120903/master.m3u8', 'https://hlsliveamdgl8-lh.akamaihd.net/i/hlslive_1@300207/master.m3u8', 'https://', 'https://'];
 				//constants dels players
 				const video = document.querySelectorAll('video');
 				
@@ -29,6 +31,7 @@
 				for (var i = 0; i < video.length; i++) {
 					//inicialització del player
 					const player = new Plyr(video[i], {captions: {active: true, update: true, language: 'en'}});
+					
 					
 					//condició if si l'enllaç triat conté "m3u8"
 					if(source[i].indexOf('.m3u8') != -1){
@@ -47,6 +50,12 @@
 								setTimeout(() => hls.subtitleTrack = player.currentTrack, 50);
 							});
 						}
+					} else if(source[i].indexOf('.mpd') != -1) {
+						dash = dashjs.MediaPlayer().create();
+						
+						//dash.getBitrateInfoListFor
+
+						dash.initialize(video[i], source[i], false);
 					} else {
 						//cas enllaç no m3u8
 						video[i].src = source[i];

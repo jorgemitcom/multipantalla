@@ -11,6 +11,8 @@
 		<link rel="stylesheet" href="https://cdn.plyr.io/3.5.6/plyr.css" />
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 		<link rel="stylesheet" href="css/style.css">
+		 <!-- MPD support -->
+		<script src="https://cdn.dashjs.org/latest/dash.all.debug.js"></script>
 	</head>
 	
 	
@@ -31,6 +33,7 @@
 					//inicialització del player
 					const player = new Plyr(video[i], {captions: {active: true, update: true, language: 'en'}});
 					
+					
 					//condició if si l'enllaç triat conté "m3u8"
 					if(source[i].indexOf('.m3u8') != -1){
 						//definició de condició if en cas de navegador amb suport nadiu
@@ -48,6 +51,12 @@
 								setTimeout(() => hls.subtitleTrack = player.currentTrack, 50);
 							});
 						}
+					} else if(source[i].indexOf('.mpd') != -1) {
+						dash = dashjs.MediaPlayer().create();
+						
+						//dash.getBitrateInfoListFor
+
+						dash.initialize(video[i], source[i], false);
 					} else {
 						//cas enllaç no m3u8
 						video[i].src = source[i];
