@@ -11,8 +11,6 @@
 		<link rel="stylesheet" href="https://cdn.plyr.io/3.5.6/plyr.css" />
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 		<link rel="stylesheet" href="css/style.css">
-		 <!-- MPD support -->
-		<script src="https://cdn.dashjs.org/latest/dash.all.debug.js"></script>
 	</head>
 	
 	
@@ -32,7 +30,6 @@
 					//inicialització del player
 					const player = new Plyr(video[i], {captions: {active: true, update: true, language: 'en'}});
 					
-					
 					//condició if si l'enllaç triat conté "m3u8"
 					if(source[i].indexOf('.m3u8') != -1){
 						//definició de condició if en cas de navegador amb suport nadiu
@@ -50,12 +47,6 @@
 								setTimeout(() => hls.subtitleTrack = player.currentTrack, 50);
 							});
 						}
-					} else if(source[i].indexOf('.mpd') != -1) {
-						dash = dashjs.MediaPlayer().create();
-						
-						//dash.getBitrateInfoListFor
-
-						dash.initialize(video[i], source[i], false);
 					} else {
 						//cas enllaç no m3u8
 						video[i].src = source[i];
@@ -118,7 +109,7 @@
 				</div>
 				<div class="col w-100 p-0 players">
 					<video muted autoplay id="player_huit" controls crossorigin playsinline poster="img/no_disponible_rtve.png"></video>
-					<div class="titol">La 1 Canarias</div>
+					<div class="titol">INST 1</div>
 				</div>
   			</div>
 			
@@ -126,19 +117,19 @@
 			<div class="row justify-content-center">
 				<div class="col w-100 p-0 players">
 					<video muted autoplay id="player_nou" controls crossorigin playsinline poster="img/no_disponible_rtve.png"></video>
-					<div class="titol">La 2 Canarias</div>
+					<div class="titol">INST 2</div>
 				</div>
 				<div class="col w-100 p-0 players">
 					<video muted autoplay id="player_deu" controls crossorigin playsinline poster="img/no_disponible_rtve.png"></video>
-					<div class="titol">24h Canarias</div>
+					<div class="titol">INST 3</div>
 				</div>
 				<div class="col w-100 p-0 players">
 					<video muted autoplay id="player_onze" controls crossorigin playsinline poster="img/no_disponible_rtve.png"></video>
-					<div class="titol">NULL</div>
+					<div class="titol">INST 4</div>
 				</div>
 				<div class="col w-100 p-0 players">
 					<video muted autoplay id="player_dotze" controls crossorigin playsinline poster="img/no_disponible_rtve.png"></video>
-					<div class="titol">NULL</div>
+					<div class="titol">La 1 Canarias</div>
 				</div>
   			</div>
 		</div>
