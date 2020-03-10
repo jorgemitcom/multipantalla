@@ -19,9 +19,11 @@
 		<script>
 
 			document.addEventListener('DOMContentLoaded', () => {
+https://bcovlive-a.akamaihd.net/1e7e91116b104391a4f22e13a694d94f/eu-central-1/6057955885001/profile_0/chunklist_dvr.m3u8
+				
 
 				//constant amb els streamings/videos
-				const source = ['https://cflive-emea.live-delivery.ooyala.com/out/u/jb44pwd2tj7w5/111819/wyYXIxZTE6okZbyKLzxq8TXa4a-SQlAO/cs/d77d4356674b449695b1c0f19fbd6fae.m3u8', 'https://cflive-emea.live-delivery.ooyala.com/out/u/jb44pwd2tj7w5/111819/N5czVtaDE6V-njMekyhEgUt9nHSS5-ze/cs/b2d9d6c97df4e1589cc508ea6841b2a.m3u8', 'https://cflive-emea.live-delivery.ooyala.com/out/u/jb44pwd2tj7w5/111819/RldjlsZjE615dBR8DeOcV3XBGpO1wj40/cs/be632d7fd21f4a90b61b22a5548d4594.m3u8', 'https://cflive-emea.live-delivery.ooyala.com/out/u/jb44pwd2tj7w5/111819/RldjlsZjE615dBR8DeOcV3XBGpO1wj40/cs/57b495346fad433c81b0d5cb7ef6c9f1.m3u8', 'https://streaming.enetres.net/489DDF7FE98241D19D8970314BC9D3EF021/mobile/playlist.m3u8?idLive=0226&referer=TkQ=', 'http://events3-crtvg.flumotion.com/playlist.m3u8', 'http://telemadridhls-live.hls.adaptive.level3.net/telemadrid/telemadrid1/index.m3u8', 'http://laotrahls-live.hls.adaptive.level3.net/telemadrid/laotra1/index.m3u8', 'http://europa-crtvg.flumotion.com/playlist.m3u8', 'http://america-crtvg.flumotion.com/playlist.m3u8', 'http://momentog-crtvg.flumotion.com/crtvg/momentog_med/chunks.m3u8', 'http://amodino-crtvg.flumotion.com/playlist.m3u8','http://events2-crtvg.flumotion.com/playlist.m3u8','https://','https://', 'https://'];
+				const source = ['https://bcovlive-a.akamaihd.net/1e7e91116b104391a4f22e13a694d94f/eu-central-1/6057955885001/profile_0/chunklist_dvr.m3u8', 'https://bcovlive-a.akamaihd.net/51ba7786cd2d435cb0c458f47324df61/eu-central-1/6057955885001/profile_0/chunklist.m3u8', 'https://cflive-emea.live-delivery.ooyala.com/out/u/jb44pwd2tj7w5/111819/RldjlsZjE615dBR8DeOcV3XBGpO1wj40/cs/be632d7fd21f4a90b61b22a5548d4594.m3u8', 'https://cflive-emea.live-delivery.ooyala.com/out/u/jb44pwd2tj7w5/111819/RldjlsZjE615dBR8DeOcV3XBGpO1wj40/cs/57b495346fad433c81b0d5cb7ef6c9f1.m3u8', 'https://streaming.enetres.net/489DDF7FE98241D19D8970314BC9D3EF021/mobile/playlist.m3u8?idLive=0226&referer=TkQ=', 'https://events3-crtvg.flumotion.com/playlist.m3u8', 'http://telemadridhls-live.hls.adaptive.level3.net/telemadrid/telemadrid1/index.m3u8', 'http://laotrahls-live.hls.adaptive.level3.net/telemadrid/laotra1/index.m3u8', 'https://europa-crtvg.flumotion.com/playlist.m3u8', 'https://america-crtvg.flumotion.com/playlist.m3u8', 'https://momentog-crtvg.flumotion.com/crtvg/momentog_med/chunks.m3u8', 'https://amodino-crtvg.flumotion.com/playlist.m3u8','https://events2-crtvg.flumotion.com/playlist.m3u8','https://','https://', 'https://'];
 				//constants dels players
 				const video = document.querySelectorAll('video');
 				
@@ -66,17 +68,17 @@
 
 				
 			
-			/*A PUNT 3
+			/*
 				https://cflive-emea.live-delivery.ooyala.com/out/u/jb44pwd2tj7w5/111819/N5czVtaDE6V-njMekyhEgUt9nHSS5-ze/cs/b2d9d6c97df4e1589cc508ea6841b2a.m3u8
-				SENSE PUBLIMOSCA
+			
 				https://cflive-emea.live-delivery.ooyala.com/out/u/jb44pwd2tj7w5/111819/RldjlsZjE615dBR8DeOcV3XBGpO1wj40/cs/be632d7fd21f4a90b61b22a5548d4594.m3u8
-				
-				TESTA A
+			
 				https://cflive-emea.live-delivery.ooyala.com/out/u/jb44pwd2tj7w5/111819/RldjlsZjE615dBR8DeOcV3XBGpO1wj40/cs/57b495346fad433c81b0d5cb7ef6c9f1.m3u8
 				
 				https://cflive-emea.live-delivery.ooyala.com/out/u/jb44pwd2tj7w5/111819/81ZndpZTE6V1PrThLnnvJN6hGu1RgM_c/cs/e7e684f48f9c4a76ae6edf3833933aa2.m3u8
 				https://cflive-emea.live-delivery.ooyala.com/out/u/jb44pwd2tj7w5/111819/xqdTlsZjE6Wt46TywgU103l_lbpag-Wr/cs/fe7eaf0a2ec14d8691c3365eeca6fa94.m3u8
-				https://cflive-emea.live-delivery.ooyala.com/out/u/jb44pwd2tj7w5/111819/41dW5paTE6HYfN_ejwZuDUv5alUkrfUr/cs/1a2630c94d394d72a84169eaf765be89.m3u8*/
+				https://cflive-emea.live-delivery.ooyala.com/out/u/jb44pwd2tj7w5/111819/41dW5paTE6HYfN_ejwZuDUv5alUkrfUr/cs/1a2630c94d394d72a84169eaf765be89.m3u8
+				const source = ['https://cflive-emea.live-delivery.ooyala.com/out/u/jb44pwd2tj7w5/111819/wyYXIxZTE6okZbyKLzxq8TXa4a-SQlAO/cs/d77d4356674b449695b1c0f19fbd6fae.m3u8',*/
 	</script>
 
 		<div class="container">
